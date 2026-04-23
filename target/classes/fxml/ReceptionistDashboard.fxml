@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hospital.controller.ReceptionistDashboardController"
+            styleClass="dashboard-root">
+
+    <left>
+        <VBox styleClass="sidebar" spacing="10" alignment="TOP_CENTER" prefWidth="220">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Receptionist" styleClass="sidebar-header">
+                <font>
+                    <Font name="System Bold" size="18.0"/>
+                </font>
+            </Label>
+            <Separator/>
+            <Button text="Dashboard" styleClass="sidebar-button-active" onAction="#handleDashboard"/>
+            <Button text="Register Patient" styleClass="sidebar-button" onAction="#handleRegisterPatient"/>
+            <Button text="Book Appointment" styleClass="sidebar-button" onAction="#handleBookAppointment"/>
+            <Button text="Generate Bill" styleClass="sidebar-button" onAction="#handleGenerateBill"/>
+            <Button text="Admissions" styleClass="sidebar-button" onAction="#handleAdmissions"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Separator/>
+            <Button text="Logout" styleClass="logout-button" onAction="#handleLogout"/>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" styleClass="content-area">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+            <Label fx:id="welcomeLabel" styleClass="welcome-label">
+                <font>
+                    <Font name="System Bold" size="24.0"/>
+                </font>
+            </Label>
+            <HBox spacing="15" alignment="CENTER">
+                <VBox styleClass="stat-card stat-card-primary" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Total Patients" styleClass="stat-label"/>
+                    <Label fx:id="totalPatientsLabel" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card stat-card-success" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Today's Appts" styleClass="stat-label"/>
+                    <Label fx:id="todayAppointmentsLabel" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card stat-card-warning" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Pending Bills" styleClass="stat-label"/>
+                    <Label fx:id="pendingBillsLabel" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card stat-card-info" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Admitted" styleClass="stat-label"/>
+                    <Label fx:id="admittedPatientsLabel" styleClass="stat-value"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

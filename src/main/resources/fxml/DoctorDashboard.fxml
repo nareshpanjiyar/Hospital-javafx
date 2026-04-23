@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hospital.controller.DoctorDashboardController"
+            styleClass="dashboard-root">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-bar">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            <Label text="🩺 Doctor Dashboard" styleClass="header-title">
+                <font>
+                    <Font name="System Bold" size="24.0"/>
+                </font>
+            </Label>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" styleClass="welcome-label"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="logout-button"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="content-scroll">
+            <VBox spacing="25" styleClass="content-container">
+                <padding>
+                    <Insets top="25" right="30" bottom="25" left="30"/>
+                </padding>
+
+                <!-- Statistics Cards -->
+                <HBox spacing="20" alignment="CENTER">
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <Label text="📅" styleClass="stat-icon"/>
+                        <Label fx:id="totalAppointmentsLabel" styleClass="stat-value"/>
+                        <Label text="Total Appointments" styleClass="stat-label"/>
+                    </VBox>
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <Label text="⏰" styleClass="stat-icon"/>
+                        <Label fx:id="upcomingAppointmentsLabel" styleClass="stat-value"/>
+                        <Label text="Upcoming" styleClass="stat-label"/>
+                    </VBox>
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <Label text="💊" styleClass="stat-icon"/>
+                        <Label fx:id="totalPrescriptionsLabel" styleClass="stat-value"/>
+                        <Label text="Prescriptions" styleClass="stat-label"/>
+                    </VBox>
+                    <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                        <Label text="✅" styleClass="stat-icon"/>
+                        <Label fx:id="completedAppointmentsLabel" styleClass="stat-value"/>
+                        <Label text="Completed" styleClass="stat-label"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Recent Appointments Table -->
+                <VBox spacing="10">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="📋" styleClass="section-icon"/>
+                        <Label text="Recent Appointments" styleClass="section-title">
+                            <font>
+                                <Font name="System Bold" size="18.0"/>
+                            </font>
+                        </Label>
+                        <Pane HBox.hgrow="ALWAYS"/>
+                        <Button text="View All" onAction="#handleAppointments" styleClass="link-button"/>
+                    </HBox>
+                    <TableView fx:id="recentAppointmentsTable" styleClass="data-table">
+                        <columns>
+                            <TableColumn fx:id="patientNameColumn" text="Patient" prefWidth="180"/>
+                            <TableColumn fx:id="appointmentDateColumn" text="Date &amp; Time" prefWidth="180"/>
+                            <TableColumn fx:id="reasonColumn" text="Reason" prefWidth="200"/>
+                            <TableColumn fx:id="statusColumn" text="Status" prefWidth="120"/>
+                        </columns>
+                        <placeholder>
+                            <Label text="No recent appointments"/>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+
+                <!-- Quick Actions -->
+                <HBox spacing="20" alignment="CENTER">
+                    <Button text="Appointments" onAction="#handleAppointments" styleClass="action-button" HBox.hgrow="ALWAYS"/>
+                    <Button text="Prescriptions" onAction="#handlePrescriptions" styleClass="action-button" HBox.hgrow="ALWAYS"/>
+                    <Button text="Patient History" onAction="#handlePatientHistory" styleClass="action-button" HBox.hgrow="ALWAYS"/>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

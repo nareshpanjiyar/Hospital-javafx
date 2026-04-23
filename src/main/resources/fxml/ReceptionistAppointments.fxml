@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hospital.controller.ReceptionistAppointmentsController">
+    <top>
+        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Button text="← Back" onAction="#handleBack" style="-fx-background-color: transparent; -fx-text-fill: white;"/>
+            <Label text="Book Appointment" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="20" style="-fx-padding: 30;">
+            <Label fx:id="messageLabel"/>
+            <GridPane hgap="10" vgap="10">
+                <Label text="Patient *"/>
+                <ComboBox fx:id="patientCombo" GridPane.columnIndex="1" prefWidth="300"/>
+                <Label text="Doctor *" GridPane.rowIndex="1"/>
+                <ComboBox fx:id="doctorCombo" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="300"/>
+                <Label text="Date *" GridPane.rowIndex="2"/>
+                <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="Time" GridPane.rowIndex="3"/>
+                <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <ComboBox fx:id="hourCombo" prefWidth="80"/>
+                    <Label text=":"/>
+                    <ComboBox fx:id="minuteCombo" prefWidth="80"/>
+                </HBox>
+                <Label text="Reason" GridPane.rowIndex="4"/>
+                <TextArea fx:id="reasonArea" GridPane.columnIndex="1" GridPane.rowIndex="4" prefRowCount="3"/>
+            </GridPane>
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Book Appointment" style="-fx-background-color: #3498db; -fx-text-fill: white;" onAction="#handleBook"/>
+            </HBox>
+            <Label text="Upcoming Appointments" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <TableView fx:id="appointmentsTable">
+                <columns>
+                    <TableColumn fx:id="patientCol" text="Patient" prefWidth="150"/>
+                    <TableColumn fx:id="doctorCol" text="Doctor" prefWidth="150"/>
+                    <TableColumn fx:id="dateTimeCol" text="Date &amp; Time" prefWidth="180"/>
+                    <TableColumn fx:id="statusCol" text="Status" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

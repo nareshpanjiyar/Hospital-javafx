@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hospital.controller.DoctorAppointmentsController"
+            styleClass="dashboard-root">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-bar">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            <Label text="My Appointments" styleClass="header-title">
+                <font>
+                    <Font name="System Bold" size="24.0"/>
+                </font>
+            </Label>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Back to Dashboard" onAction="#handleBack" styleClass="action-button"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="content-scroll">
+            <VBox spacing="15" styleClass="content-container">
+                <padding>
+                    <Insets top="20" right="30" bottom="20" left="30"/>
+                </padding>
+
+                <!-- Filter Bar -->
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <TextField fx:id="searchField" promptText="Search by patient name..." HBox.hgrow="ALWAYS"/>
+                    <ComboBox fx:id="statusFilterCombo" prefWidth="150"/>
+                    <DatePicker fx:id="dateFilterPicker" promptText="Filter by date" prefWidth="150"/>
+                    <Button text="Clear Filters" onAction="#handleClearFilters" styleClass="secondary-button"/>
+                </HBox>
+
+                <!-- Appointments Table -->
+                <TableView fx:id="appointmentsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colPatient" text="Patient" prefWidth="150"/>
+                        <TableColumn fx:id="colDateTime" text="Date &amp; Time" prefWidth="180"/>
+                        <TableColumn fx:id="colReason" text="Reason" prefWidth="200"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+                        <TableColumn fx:id="colActions" text="Actions" prefWidth="200"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="No appointments found."/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

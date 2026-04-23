@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hospital.controller.DoctorPrescriptionsController"
+            styleClass="dashboard-root">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-bar">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            <Label text="Prescriptions" styleClass="header-title">
+                <font>
+                    <Font name="System Bold" size="24.0"/>
+                </font>
+            </Label>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Back to Dashboard" onAction="#handleBack" styleClass="action-button"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="content-scroll">
+            <VBox spacing="20" styleClass="content-container">
+                <padding>
+                    <Insets top="20" right="30" bottom="20" left="30"/>
+                </padding>
+
+                <!-- New Prescription Form -->
+                <VBox spacing="10" styleClass="form-container">
+                    <Label text="Write New Prescription" styleClass="section-title"/>
+                    <HBox spacing="15">
+                        <VBox spacing="5" HBox.hgrow="ALWAYS">
+                            <Label text="Patient" styleClass="field-label"/>
+                            <ComboBox fx:id="patientCombo" maxWidth="Infinity"/>
+                        </VBox>
+                    </HBox>
+                    <VBox spacing="5">
+                        <Label text="Diagnosis" styleClass="field-label"/>
+                        <TextArea fx:id="diagnosisArea" promptText="Enter diagnosis..." prefRowCount="2"/>
+                    </VBox>
+                    <Label text="Medications" styleClass="section-title"/>
+                    <VBox fx:id="medicationsContainer" spacing="10"/>
+                    <Button fx:id="addMedicationBtn" text="Add Medication" onAction="#handleAddMedication" styleClass="secondary-button"/>
+                    <VBox spacing="5">
+                        <Label text="Additional Notes" styleClass="field-label"/>
+                        <TextArea fx:id="notesArea" promptText="Optional notes..." prefRowCount="2"/>
+                    </VBox>
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button fx:id="savePrescriptionBtn" text="Save Prescription" onAction="#handleSavePrescription" styleClass="primary-button"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Prescriptions Table -->
+                <VBox spacing="10">
+                    <Label text="Prescription History" styleClass="section-title"/>
+                    <TableView fx:id="prescriptionsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colPatient" text="Patient" prefWidth="150"/>
+                            <TableColumn fx:id="colDate" text="Date" prefWidth="180"/>
+                            <TableColumn fx:id="colDiagnosis" text="Diagnosis" prefWidth="200"/>
+                            <TableColumn fx:id="colActions" text="Actions" prefWidth="80"/>
+                        </columns>
+                        <placeholder>
+                            <Label text="No prescriptions found."/>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

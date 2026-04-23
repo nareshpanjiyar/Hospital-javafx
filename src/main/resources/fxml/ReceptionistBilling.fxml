@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hospital.controller.ReceptionistBillingController">
+    <top>
+        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Button text="← Back" onAction="#handleBack" style="-fx-background-color: transparent; -fx-text-fill: white;"/>
+            <Label text="Generate Bill" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="20" style="-fx-padding: 30;">
+            <Label fx:id="messageLabel"/>
+            <GridPane hgap="10" vgap="10">
+                <Label text="Patient *"/>
+                <ComboBox fx:id="patientCombo" GridPane.columnIndex="1" prefWidth="300"/>
+                <Label text="Amount (₹) *" GridPane.rowIndex="1"/>
+                <TextField fx:id="amountField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="Description" GridPane.rowIndex="2"/>
+                <TextArea fx:id="descArea" GridPane.columnIndex="1" GridPane.rowIndex="2" prefRowCount="2"/>
+                <Label text="Status" GridPane.rowIndex="3"/>
+                <ComboBox fx:id="statusCombo" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            </GridPane>
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Generate Bill" style="-fx-background-color: #27ae60; -fx-text-fill: white;" onAction="#handleGenerate"/>
+            </HBox>
+            <TableView fx:id="billsTable">
+                <columns>
+                    <TableColumn fx:id="billIdCol" text="Bill #" prefWidth="80"/>
+                    <TableColumn fx:id="patientCol" text="Patient" prefWidth="180"/>
+                    <TableColumn fx:id="amountCol" text="Amount" prefWidth="100"/>
+                    <TableColumn fx:id="dateCol" text="Date" prefWidth="120"/>
+                    <TableColumn fx:id="statusCol" text="Status" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

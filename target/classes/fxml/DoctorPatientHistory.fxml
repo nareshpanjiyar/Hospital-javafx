@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hospital.controller.DoctorPatientHistoryController"
+            styleClass="dashboard-root">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-bar">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            <Label text="Patient History" styleClass="header-title">
+                <font>
+                    <Font name="System Bold" size="24.0"/>
+                </font>
+            </Label>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Back to Dashboard" onAction="#handleBack" styleClass="action-button"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="content-scroll">
+            <VBox spacing="20" styleClass="content-container">
+                <padding>
+                    <Insets top="20" right="30" bottom="20" left="30"/>
+                </padding>
+
+                <!-- Patient Selector -->
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Label text="Select Patient:" styleClass="field-label"/>
+                    <ComboBox fx:id="patientCombo" prefWidth="300"/>
+                    <Button text="Refresh" onAction="#handleRefresh" styleClass="secondary-button"/>
+                </HBox>
+
+                <!-- Patient Info -->
+                <Label fx:id="patientInfoLabel" style="-fx-font-size: 14px; -fx-text-fill: #2c3e50;"/>
+
+                <!-- Appointments Section -->
+                <VBox spacing="10">
+                    <Label text="Appointment History" styleClass="section-title"/>
+                    <TableView fx:id="appointmentsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="apptDateCol" text="Date &amp; Time" prefWidth="180"/>
+                            <TableColumn fx:id="apptDoctorCol" text="Doctor" prefWidth="150"/>
+                            <TableColumn fx:id="apptReasonCol" text="Reason" prefWidth="200"/>
+                            <TableColumn fx:id="apptStatusCol" text="Status" prefWidth="100"/>
+                        </columns>
+                        <placeholder>
+                            <Label text="No appointments found for this patient."/>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+
+                <!-- Prescriptions Section -->
+                <VBox spacing="10">
+                    <Label text="Prescription History" styleClass="section-title"/>
+                    <TableView fx:id="prescriptionsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="prescDateCol" text="Date &amp; Time" prefWidth="180"/>
+                            <TableColumn fx:id="prescDoctorCol" text="Doctor" prefWidth="150"/>
+                            <TableColumn fx:id="prescDiagnosisCol" text="Diagnosis" prefWidth="200"/>
+                            <TableColumn fx:id="prescStatusCol" text="Status" prefWidth="100"/>
+                        </columns>
+                        <placeholder>
+                            <Label text="No prescriptions found for this patient."/>
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

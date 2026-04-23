@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hospital.controller.AdminDashboardController"
+            styleClass="dashboard-root">
+
+    <left>
+        <VBox styleClass="sidebar" spacing="10" alignment="TOP_CENTER" prefWidth="220">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            <Label text="HMS Admin" styleClass="sidebar-header">
+                <font><Font name="System Bold" size="18.0"/></font>
+            </Label>
+            <Separator/>
+            <Button text="Dashboard" styleClass="sidebar-button-active"/>
+            <Button text="Patients" styleClass="sidebar-button" onAction="#goToPatients"/>
+            <Button text="Doctors" styleClass="sidebar-button" onAction="#goToDoctors"/>
+            <Button text="Appointments" styleClass="sidebar-button" onAction="#goToAppointments"/>
+            <Button text="Drugs" styleClass="sidebar-button" onAction="#goToDrugs"/>
+            <Button text="Prescriptions" styleClass="sidebar-button" onAction="#goToPrescriptions"/>
+            <Button text="Billing" styleClass="sidebar-button" onAction="#goToBilling"/>
+            <Button text="Receptionists" styleClass="sidebar-button" onAction="#goToReceptionists"/>
+            <Button text="Admissions" styleClass="sidebar-button" onAction="#goToAdmissions"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Separator/>
+            <Button text="Logout" styleClass="logout-button" onAction="#handleLogout"/>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" styleClass="content-area">
+            <padding><Insets top="25" right="25" bottom="25" left="25"/></padding>
+            <Label text="Admin Dashboard" styleClass="welcome-label">
+                <font><Font name="System Bold" size="24.0"/></font>
+            </Label>
+
+            <HBox spacing="15" alignment="CENTER">
+                <VBox styleClass="stat-card stat-card-primary" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Total Patients" styleClass="stat-label"/>
+                    <Label fx:id="totalPatientsLabel" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card stat-card-success" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Total Doctors" styleClass="stat-label"/>
+                    <Label fx:id="totalDoctorsLabel" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card stat-card-warning" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Appointments" styleClass="stat-label"/>
+                    <Label fx:id="totalAppointmentsLabel" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card stat-card-info" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Revenue (Paid)" styleClass="stat-label"/>
+                    <Label fx:id="totalRevenueLabel" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card stat-card-danger" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Low Stock" styleClass="stat-label"/>
+                    <Label fx:id="lowStockLabel" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="stat-card stat-card-secondary" alignment="CENTER" spacing="5">
+                    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+                    <Label text="Pending Bills" styleClass="stat-label"/>
+                    <Label fx:id="pendingBillsLabel" styleClass="stat-value"/>
+                </VBox>
+            </HBox>
+
+            <Label text="Recent Appointments" styleClass="section-title"/>
+            <TableView fx:id="recentAppointmentsTable">
+                <columns>
+                    <TableColumn fx:id="colPatientName" text="Patient" prefWidth="150"/>
+                    <TableColumn fx:id="colDoctorName" text="Doctor" prefWidth="150"/>
+                    <TableColumn fx:id="colDateTime" text="Date &amp; Time" prefWidth="180"/>
+                    <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>
